@@ -2,7 +2,7 @@
 $host = "localhost";      
 $username = "root";       
 $password = "";           
-$database = "project_locker"; 
+$database = "locker"; 
 
 // สร้างการเชื่อมต่อ
 $conn = new mysqli($host, $username, $password, $database);
