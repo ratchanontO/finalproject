@@ -33,7 +33,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 ?>
 <style>
     body {
-        background: linear-gradient(to right, #74ebd5, #acb6e5);
+        background-color:rgba(73, 70, 70, 0.12);
         height: 100vh;
         display: flex;
         align-items: center;
@@ -43,7 +43,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     .login-card {
         border: none;
         border-radius: 15px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
         padding: 30px;
         background-color: #fff;
     }

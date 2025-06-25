@@ -1,6 +1,8 @@
 <?php
 include 'connectdb.php';
+require 'mail_function.php';
 require "head.php";
+
 function isValidUsername($username)
 {
     return preg_match('/^[a-zA-Z0-9]+$/', $username);
@@ -13,15 +15,26 @@ $error_username = false;
 $success = false;
 
 if (!empty($_POST["username"])) {
+    
+    $token = bin2hex(random_bytes(16));
     $username = $_POST["username"];
     $password = $_POST["password"];
     $confirmpassword = $_POST["confirmpassword"];
     $email = $_POST["email"];
     $time = date("Y-m-d H:i:s");
+
+    // ข้อมูลส่งเมล
+    $subject = "ยืนยันการสมัครสมาชิก locker For ecp";
+    $link = "http://localhost/finalproject/verify.php?token=$token&email=$email";
+    $body = "
+        <h3>ยินดีต้อนรับสู่ Locker For Ecp</h3>
+        <p>คุณได้สมัครสมาชิกเรียบร้อยแล้ว เพื่อใช้งานบริการของเราคุณต้องยืนยันอีเมลด้วยการกดลิ้งค์ข้างล่างก่อนใช้งาน</p>
+        <p>คลิกเพื่อยืนยันอีเมล: <a href='$link'>ยืนยันอีเมล</a></p>
+    ";
+
     if (isValidUsername($username)) {
         if ($password == $confirmpassword) {
             $hash_password = password_hash($password, PASSWORD_DEFAULT);
-            $token = bin2hex(random_bytes(16));
             // เริ่มลงdb
             $stmt = $conn->prepare("SELECT * FROM users WHERE username = ? or email = ?");
             $stmt->bind_param("ss", $username, $email);
@@ -34,7 +47,11 @@ if (!empty($_POST["username"])) {
                 $insert = $conn->prepare("INSERT INTO users (username, password, email, token, created_at ) VALUES (?, ?, ?, ?, ?)");
                 $insert->bind_param("sssss", $username, $hash_password, $email, $token, $time);
                 $insert->execute();
-                $success = true;
+                
+                // ส่งลิ้งค์ยืนยันเมล
+                if (sendMail($email, $subject, $body)) {
+                    $success = true;
+                }
             }
         } else {
             $error_password = true;
@@ -47,7 +64,7 @@ if (!empty($_POST["username"])) {
 
 <style>
     body {
-        background: linear-gradient(to right, #74ebd5, #acb6e5);
+        background-color:rgba(73, 70, 70, 0.12);
         height: 100vh;
         display: flex;
         align-items: center;
@@ -76,25 +93,27 @@ if (!empty($_POST["username"])) {
                     <h3 class="text-center mb-4"> สมัครสมาชิก </h3>
                     <hr>
                     <form action="register.php" method="POST">
-                        <div class="mb-3">
-                            <label for="username"> ชื่อผู้ใช้ </label>
+                        <label for="username"> ชื่อผู้ใช้ </label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
                             <input type="text" class="form-control" placeholder="Username" id="username" name="username"
                                 required>
                         </div>
-                        <div class="mb-3">
-                            <label for="password"> รหัสผ่าน </label>
-                            <input type="password" class="form-control" placeholder="password" id="password"
-                                name="password" required>
+                        <label for="password"> รหัสผ่าน </label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+                            <input type="password" class="form-control" placeholder="password" id="password"name="password" required>
                         </div>
-                        <div class="mb-3">
-                            <label for="password"> ยืนยันรหัสผ่าน </label>
+                        <label for="password"> ยืนยันรหัสผ่าน </label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>  
                             <input type="password" class="form-control" placeholder="confirmpassword"
                                 id="confirmpassword" name="confirmpassword" required>
                         </div>
-                        <div class="mb-3">
-                            <label for="email"> อีเมล </label>
-                            <input type="email" class="form-control" placeholder="email" id="email" name="email"
-                                required>
+                        <label for="email"> อีเมล </label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                            <input type="email" class="form-control" placeholder="email" id="email" name="email"required>
                         </div>
                         <?php
                         if ($error_register) {
@@ -117,11 +136,11 @@ if (!empty($_POST["username"])) {
                             Swal.fire({
                                 icon: 'success',
                                 title: 'สมัครสมาชิกสำเร็จ!',
-                                text: 'ระบบจะพาคุณไปหน้าถัดไป...',
+                                text: 'กรุณายืนยันอีเมลที่กล่องข้อความอีเมลของท่าน',
                                 showConfirmButton: false,
                                 timer: 3000,
                                 timerProgressBar: true,
-                                heightAuto: false          
+                                heightAuto: false
                             })
                         </script>
                     <?php endif; ?>
