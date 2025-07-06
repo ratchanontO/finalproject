@@ -18,10 +18,10 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
         if (password_verify($_POST['password'], $user['password'])) {
             $_SESSION['username'] = $user['username'];
-            $_SESSION['id'] = $user['id'];
+            $_SESSION['userid'] = $user['id'];
             $_SESSION['role'] = $user['role'];
             echo ($_SESSION['username']);
-            // header("Location: index.php");
+            header("Location: index.php");
             exit;
         } else {
             $login_error = true;
