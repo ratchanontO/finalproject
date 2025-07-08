@@ -62,7 +62,7 @@ include "head.php";
       <i class="fas fa-home"></i>
       <span>หน้าหลัก</span>
     </a>
-    <a href="#" class="nav-link text-center">
+    <a href="history.php" class="nav-link text-center">
       <i class="fas fa-receipt"></i>
       <span>ประวัติการใช้งาน</span>
     </a>

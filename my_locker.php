@@ -71,7 +71,6 @@
 
                 if ($result->num_rows > 0){
                     while ($row = $result->fetch_assoc()){?>
-
                         <div class="col-sm-4 col-5 ">
                             <div class="card text-center shadow-sm p-3" style="border-radius: 15px;">
                                 <div class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-warning text-dark">
@@ -101,6 +100,17 @@
                         
                     <?php 
                     }
+                }else{
+                    echo "
+                        <script>
+                            Swal.fire({
+                                icon: 'info',
+                                title: 'คุณยังไม่มีตู้',
+                                text: 'สามารถเลือกใช้งานได้ที่หน้าหลัก',
+                                confirmButtonText: 'ตกลง'
+                            });
+                        </script>
+                    ";
                 }
                 ?>
             </div>
