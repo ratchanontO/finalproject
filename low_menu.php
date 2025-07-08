@@ -46,17 +46,13 @@ include "head.php";
 
   .custom-narrow {
     max-width: 1123px;
-    /* กำหนดขนาดเอง */
     margin: auto;
-    /* จัดตรงกลาง */
   }
 </style>
-  <!-- Bottom Navigation -->
-
   <nav class="bottom-nav d-flex justify-content-around align-items-center">
     <a href="#" class="nav-link text-center">
       <i class="fas fa-credit-card"></i>
-      <span>บัตรเงินสด</span>
+      <span>ขอคิดก่อน</span>
     </a>
     <a href="my_locker.php" class="nav-link text-center">
       <i class="fa-solid fa-box-open"></i>

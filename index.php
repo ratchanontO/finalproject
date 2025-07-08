@@ -140,7 +140,7 @@
 
                     if (data.success) {
                         Swal.fire("สำเร็จ", data.message, "success").then(() => {
-                            location.reload(); // ✅ รีเฟรชหน้าหลังจากกด OK
+                            location.reload(); 
                         });
                     } else {
                         Swal.fire("ผิดพลาด", data.message, "error");

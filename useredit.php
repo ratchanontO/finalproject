@@ -70,24 +70,9 @@
         
     
     ?>
-        <!-- <div class="container custom-narrow">
-            <div class="row align-items-center"style="background-color:rgba(255, 255, 255, 0.79); margin: 14px 12px; border-radius: 15px; padding: 1rem 0;">
-                <h4 class="mb-4 fw-bold">ข้อมูลผู้ใช้งาน</h4>
-
-                <div class="col-md-8 col-7">
-                    <div class="border p-4  " style="border-radius: 15px;">
-                        <h4><i class="bi bi-person-fill"></i> <span id="detail-username"></span>: <?php echo $row['username']?> </h4>
-                        <br>
-                        <p>Email : <strong id="detail-lockernumber"> <?php echo $row['email']?> </strong></p> <?php if($status_email){echo "กรุณายืนยันอีเมล";}?>
-                        <p>สมัครเมื่อ : <strong id="detail-weight"></strong> <?php echo $row['created_at']?> </p>
-                        <button class="btn btn-success">เปลี่ยนรหัสผ่าน</button>
-                    </div>
-                </div>
-            </div>
-        </div> -->
         <div class="container custom-narrow mt-4">
             <div class="row justify-content-center" >
-                <div class="col-md-10 col-11">
+                <div class="col-md-11 col-11">
                     <div class="card shadow-sm" style="border-radius: 15px;">
                         <div class="card-body">
                             <h4 class="fw-bold mb-4">
@@ -131,26 +116,6 @@
     <?php
         require "low_menu.php";
     ?>
-
-<script>
-function cancelLocker() {
-    Swal.fire({
-        title: "คุณแน่ใจหรือไม่?",
-        text: "คุณต้องการยกเลิกการใช้ตู้นี้?",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "ใช่, ยกเลิก",
-        cancelButtonText: "ยกเลิก"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            // TODO: ทำการยกเลิกผ่าน fetch หรือ form
-            Swal.fire("ยกเลิกสำเร็จ", "คุณยกเลิกการใช้ตู้เรียบร้อยแล้ว", "success").then(() => {
-                location.reload(); // หรือซ่อน detail box ก็ได้
-            });
-        }
-    });
-}
-</script>
 
 </body>
 

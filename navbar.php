@@ -17,9 +17,8 @@
 
     .custom-narrow {
         max-width: 1123px;
-        /* กำหนดขนาดเอง */
         margin: auto;
-        /* จัดตรงกลาง */
+
     }   
 </style>
 <?php
