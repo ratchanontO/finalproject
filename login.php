@@ -32,6 +32,18 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 }
 ?>
 <style>
+    .mitr-extralight200 {
+        font-family: "Mitr", sans-serif;
+        font-weight: 200;
+        font-style: normal;
+    }
+
+    .mitr-extralight300 {
+        font-family: "Mitr", sans-serif;
+        font-weight: 300;
+        font-style: normal;
+    }
+
     body {
         background-color:rgba(73, 70, 70, 0.12);
         height: 100vh;
@@ -52,14 +64,29 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         box-shadow: none;
         border-color: #6c63ff;
     }
+    
+    .table {
+        font-family: "Mitr", sans-serif;  /* ฟอนต์ Mitr */
+        font-size: 15px;                  /* ขนาดตัวอักษร */
+        font-weight: 300;
+    }
+
+    .table th {
+    font-weight: 600;                 /* หัวตารางหนากว่า */
+    font-size: 16px;
+    }
+
+    .table td {
+    font-weight: 300;                 /* เนื้อหาบางลง */
+    }
 </style>
 
 <body>
-    <div class="container">
+    <div class="container ">
         <div class="row justify-content-center">
-            <div class="col-md-5">
+            <div class="col-md-5 mitr-extralight300">
                 <div class="login-card p-4">
-                    <h3 class="text-center mb-4">เข้าสู่ระบบ</h3>
+                    <h3 class="text-center mb-4 mitr-extralight200">เข้าสู่ระบบ</h3>
                     <hr>
                     <form action="login.php" method="POST">
                         <!-- <div class="mb-3">
@@ -81,9 +108,9 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
                         <?php if ($login_error): ?>
                             <a>ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง</a>
                         <?php endif; ?>
-                        <button type="submit" class="btn btn-success w-100">เข้าสู่ระบบ</button>
+                        <button type="submit" class="btn btn-success w-100 mitr-extralight300">เข้าสู่ระบบ</button>
                     </form>
-                    <p class="text-center mt-3">ยังไม่มีบัญชี? <a href="register.php">สมัครสมาชิก</a></p>
+                    <h5 class="text-center mt-3 mitr-extralight200">ยังไม่มีบัญชี? <a href="register.php">สมัครสมาชิก</a></h5>
                 </div>
             </div>
         </div>

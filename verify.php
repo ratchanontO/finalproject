@@ -1,6 +1,7 @@
 <?php
 require "head.php";
 include 'connectdb.php';
+include 'config.php';
 
 if (isset($_GET["token"]) && isset($_GET["email"])) {
     $token = $_GET['token'];
@@ -40,7 +41,7 @@ if (isset($_GET["token"]) && isset($_GET["email"])) {
             <h3 class="text-center mb-3">ยืนยันอีเมล</h3>
             <p class="text-center"><?php echo $message; ?></p>
             <div class="text-center">
-                <a href="login.php" class="btn btn-primary">เข้าสู่ระบบ</a>
+                <a href="<?= $url ?>login.php" class="btn btn-primary">เข้าสู่ระบบ</a>
             </div>
         </div>
     </div>

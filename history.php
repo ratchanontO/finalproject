@@ -7,17 +7,48 @@ if (!isset($_SESSION["username"])) {
     header("Location: login.php");
     exit;
 }
+
+$user_id = $_SESSION['userid']; 
 ?>
+<style>
+    .mitr-extralight200 {
+        font-family: "Mitr", sans-serif;
+        font-weight: 300;
+        font-style: normal;
+    }
+
+    .mitr-extralight300 {
+        font-family: "Mitr", sans-serif;
+        font-weight: 300;
+        font-style: normal;
+    }
+
+    .table {
+        font-family: "Mitr", sans-serif;  /* ฟอนต์ Mitr */
+        font-size: 15px;                  /* ขนาดตัวอักษร */
+        font-weight: 300;
+    }
+
+    .table th {
+    font-weight: 600;                 /* หัวตารางหนากว่า */
+    font-size: 16px;
+    }
+
+    .table td {
+    font-weight: 300;                 /* เนื้อหาบางลง */
+    }
+
+</style>
 <body>
 <?php require "navbar.php"; ?>
 
-<div class="container custom-narrow">
+<div class="container custom-narrow ">
     <div class="row align-items-center" style="background-color:rgba(255, 255, 255, 0.79); margin: 14px 12px; border-radius: 15px; padding: 1rem 0;">
-        <h4 class="mb-4 fw-bold">ประวัติการใช้งาน</h4>
+        <h4 class="mb-4 mitr-extralight300">ประวัติการใช้งาน</h4>
 
         <div class="container">
             <table class="table table-bordered text-center">
-                <thead class="table-light">
+                <thead class="table-light mitr-extralight300">
                     <tr>
                         <th>วันที่และเวลา</th>
                         <th>ตู้</th>
@@ -26,31 +57,36 @@ if (!isset($_SESSION["username"])) {
                 </thead>
                 <tbody>
                     <?php
-                    // อันนี้จำลองวันที่เฉยๆ
-                    $data = [
-                        ['date' => '2025-07-08 10:00', 'locker' => '301'],
-                        ['date' => '2025-07-07 15:30', 'locker' => '302'],
-                        ['date' => '2025-07-06 09:45', 'locker' => '303'],
-                    ];
-
-                    foreach ($data as $row): 
-                        $inputDate = date('Y-m-d\TH:i', strtotime($row['date']));
-                    ?>
+                    $stmt = $conn->prepare("SELECT * FROM log_locker WHERE user_id = ? ORDER BY time DESC");
+                    $stmt->bind_param("i", $user_id); 
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    
+                    while ($row = $result->fetch_assoc()):
+                        $inputDate = date('Y-m-d\TH:i', strtotime($row['time']));
+                        ?>
                         <tr>
                             <td>
-                                <input type="datetime-local" name="date[]" class="form-control" value="<?= $inputDate ?>">
+                                <input type="datetime-local" name="date[]" class="form-control" value="<?= $inputDate ?>" readonly>
                             </td>
-                            <td><?= htmlspecialchars($row['locker']) ?></td>
+                            <td><?= htmlspecialchars($row['locker_number']) ?></td>
                             <td>
-                                <a href="watch_history.php" class="btn btn-primary btn-sm">ดูประวัติ</a>
+                                <a href="watch_history.php?locker_number=<?= $row['locker_number'] ?>&id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">ดูประวัติ</a>
                             </td>
                         </tr>
-                    <?php endforeach; ?>
+                    <?php endwhile; ?>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <?php require "low_menu.php"; ?>
 </body>

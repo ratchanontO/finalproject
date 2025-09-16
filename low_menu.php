@@ -1,8 +1,18 @@
-<?php
-include "head.php";
-?>
+
 
 <style>
+  .mitr-extralight200 {
+    font-family: "Mitr", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+  }
+
+  .mitr-extralight300 {
+    font-family: "Mitr", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+
   .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -10,9 +20,8 @@ include "head.php";
     right: 0;
     background: #fff;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 20px 20px 0 0;
+    border-radius: 20px 20px 20px 20px;
     padding: 5px 0;
-    z-index: 999;
   }
 
   .nav-link {
@@ -31,7 +40,7 @@ include "head.php";
     border-radius: 50%;
     width: 60px;
     height: 60px;
-    margin-top: -30px;
+    margin-top: -25px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,10 +58,10 @@ include "head.php";
     margin: auto;
   }
 </style>
-  <nav class="bottom-nav d-flex justify-content-around align-items-center">
+  <nav class="bottom-nav d-flex justify-content-around align-items-center mitr-extralight300">
     <a href="#" class="nav-link text-center">
-      <i class="fas fa-credit-card"></i>
-      <span>ขอคิดก่อน</span>
+      <i class="fa-brands fa-waze"></i>
+      <span>ติดต่อฉัน</span>
     </a>
     <a href="my_locker.php" class="nav-link text-center">
       <i class="fa-solid fa-box-open"></i>
@@ -60,7 +69,7 @@ include "head.php";
     </a>
     <a href="index.php" class="nav-link active text-center">
       <i class="fas fa-home"></i>
-      <span>หน้าหลัก</span>
+      <span>Home</span>
     </a>
     <a href="history.php" class="nav-link text-center">
       <i class="fas fa-receipt"></i>

@@ -1,7 +1,7 @@
 <?php
     header('Content-Type: application/json');
     include '../connectdb.php';
-
+    
     if (isset($_POST['userid']) && isset($_POST['locker_id']) && isset($_POST['locker_number']) && isset($_POST['password'])) {
         $userid = $_POST['userid'];
         $lockerid = $_POST['locker_id'];

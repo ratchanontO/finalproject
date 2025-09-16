@@ -13,11 +13,18 @@
 ?>
 
 <style>
-    .playpen-thai {
-        font-family: "Playpen Sans Thai", cursive;
-        font-weight: 400;
+    .mitr-extralight200 {
+        font-family: "Mitr", sans-serif;
+        font-weight: 200;
         font-style: normal;
     }
+
+    .mitr-extralight300 {
+        font-family: "Mitr", sans-serif;
+        font-weight: 300;
+        font-style: normal;
+    }
+
 
     .no-underline {
         text-decoration: none;
@@ -57,8 +64,7 @@
 
         <div class="container custom-narrow">
             <div class="row align-items-center"style="background-color:rgba(255, 255, 255, 0.79); margin: 14px 12px; border-radius: 15px; padding: 1rem 0;">
-                <h4 class="mb-4 fw-bold">ตู้ของฉัน</h4>
-    
+                <h4 class="mb-4 mitr-extralight300">ตู้ของฉัน</h4>
                 <?php 
                 $stmt = $conn->prepare(" SELECT user_locker.locker_id, user_locker.locker_number, locker_status.loadcell_kg 
                                                 FROM user_locker 
@@ -71,23 +77,24 @@
 
                 if ($result->num_rows > 0){
                     while ($row = $result->fetch_assoc()){?>
-                        <div class="col-sm-4 col-5 ">
+                        <div class="col-sm-4 col-5 mitr-extralight300">
                             <div class="card text-center shadow-sm p-3" style="border-radius: 15px;">
-                                <div class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-warning text-dark">
+                                <div class="position-absolute top-0 start-0 translate-middle  rounded-pill bg-warning text-dark">
                                     ตู้ของคุณ
                                 </div>
                                 <img src="img/logo.png" class="img-fluid mx-auto mb-2" style="max-height: 100px;" alt="logo">
-                                <h5 class="text-muted">ตู้ฝากของ</h5>
-                                <h3><?php echo $row["locker_number"]; ?></h3>
+                                <!-- <h5 class="text-muted mitr-extralight300">ตู้ฝากของ</h5> -->
+                                <h5 class=" mitr-extralight300">ตู้ฝากของ</h5>
+                                <h3 class=" mitr-extralight300"><?php echo $row["locker_number"]; ?></h3>
 
                             </div>
                         </div>
                             
-                        <div class="col-md-8 col-7">
+                        <div class="col-md-8 col-7 mitr-extralight200">
                             <div class="border p-4  " style="border-radius: 15px;">
                                 <h4><i class="bi bi-person-fill"></i> <span id="detail-username"></span> <?php echo $_SESSION["username"]?></h4>
                                 <p>หมายเลขตู้: <strong id="detail-lockernumber"> <?php echo $row["locker_number"]?> </strong></p>
-                                <p>น้ำหนักในตู้: <strong id="detail-weight"></strong> กก. <?php echo $row["loadcell_kg"]?></p>
+                                <p>น้ำหนักในตู้: <strong id="detail-weight"></strong><?php echo $row["loadcell_kg"]?> กิโลกรัม</p>
                                 <br>
                                 <button class="btn btn-success" onclick='locker_password(<?php echo $row["locker_id"] ?>, <?php echo $_SESSION["userid"]?>)'>เปลี่ยนรหัสผ่านตู้</button>
                                 <button class="btn btn-danger" onclick='cancelLocker(<?php echo $row["locker_id"] ?>, <?php echo $_SESSION["userid"]?>)'>ยกเลิกใช้ตู้</button>
@@ -229,6 +236,8 @@
                                 Swal.showValidationMessage('กรุณากรอกรหัสผ่านให้ครบ');
                             } else if (password !== confirm) {
                                 Swal.showValidationMessage('รหัสผ่านไม่ตรงกัน');
+                            } else if (!/^\d{5,}$/.test(password)) {
+                                Swal.showValidationMessage('รหัสผ่านต้องเป็นตัวเลข และยาวอย่างน้อย 5 หลัก');
                             }
 
                             return { password: password, key: secureKey, locker_id: locker_id , userid: user_id};
@@ -257,6 +266,7 @@
                 }
             });
         }
+
     </script>
 
 </body>

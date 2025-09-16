@@ -13,6 +13,17 @@
 ?>
 
 <style>
+    .mitr-extralight200 {
+        font-family: "Mitr", sans-serif;
+        font-weight: 200;
+        font-style: normal;
+    }
+
+    .mitr-extralight300 {
+        font-family: "Mitr", sans-serif;
+        font-weight: 300;
+        font-style: normal;
+    }
     .playpen-thai {
         font-family: "Playpen Sans Thai", cursive;
         font-weight: 400;
@@ -75,38 +86,40 @@
                     <div class="col-md-11 col-11">
                         <div class="card shadow-sm" style="border-radius: 15px;">
                             <div class="card-body">
-                                <h4 class="fw-bold mb-4">
-                                    <i class="fa-solid fa-user-circle me-2"></i> ข้อมูลผู้ใช้งาน
+                                <h4 class=" mb-4 mitr-extralight300">
+                                    <i class="fa-solid fa-user-circle me-2mitr-extralight300"></i> ข้อมูลผู้ใช้งาน
                                 </h4>
 
-                                <div class="mb-3">
-                                    <h5><i class="fa-solid fa-user me-2"></i> ชื่อผู้ใช้: 
-                                        <span class="text-primary fw-semibold"><?php echo $row['username'] ?></span>
+                                <div class="mb-3 ">
+                                    <h5 class="mitr-extralight300"><i class="fa-solid fa-user me-2"></i> ชื่อผู้ใช้: 
+                                        <span class="text-primary fw-semibold mitr-extralight300"><?php echo $row['username'] ?></span>
                                     </h5>
                                 </div>
 
                                 <div class="mb-3">
-                                    <i class="fa-solid fa-envelope me-2"></i>
-                                    อีเมล: 
-                                    <strong><?php echo $row['email'] ?></strong>
-                                    <?php if ($status_email): ?>
-                                        <span class="badge bg-warning text-dark ms-2">กรุณายืนยันอีเมล</span>
-                                        <button class="btn btn-outline-primary">
-                                            <i class="fa-solid fa-envelope"></i> ยืนยันอีเมล
-                                        </button>
-                                    <?php else: ?>
-                                        <span class="badge bg-success ms-2">ยืนยันแล้ว</span>
-                                    <?php endif; ?>
+                                    <h5 class="mitr-extralight300">
+                                        <i class="fa-solid fa-envelope me-2"></i> อีเมล:
+                                        <a><?php echo $row['email'] ?></a>
+                                        <?php if ($status_email): ?>
+                                            <span class="badge bg-warning text-dark ms-2">กรุณายืนยันอีเมล</span>
+                                            <button class="btn btn-outline-primary">
+                                                <i class="fa-solid fa-envelope"></i> ยืนยันอีเมล
+                                            </button>
+                                            <?php else: ?>
+                                                <span class="badge bg-success ms-2">ยืนยันแล้ว</span>
+                                                <?php endif; ?>
+                                    </h5>
                                 </div>
 
                                 <div class="mb-4">
-                                    <i class="fa-solid fa-calendar-check me-2"></i>
-                                    สมัครเมื่อ: 
-                                    <strong><?php echo $row['created_at'] ?></strong>
+                                    <h5 class="mitr-extralight300">
+                                        <i class="fa-solid fa-calendar-check me-2"></i> สมัครเมื่อ: 
+                                        <a><?php echo $row['created_at'] ?></a>
+                                    </h5>    
                                 </div>
 
-                                <button class="btn btn-outline-primary" onclick='changepassword_user(<?php echo $_SESSION["userid"]?>)'>
-                                    <i class="fa-solid fa-key me-2"></i> เปลี่ยนรหัสผ่าน
+                                <button class="btn btn-outline-primary mitr-extralight200" onclick='changepassword_user(<?php echo $_SESSION["userid"]?>)'>
+                                    <i class="fa-solid fa-key me-2 "></i> เปลี่ยนรหัสผ่าน
                                 </button>
                             </div>
                         </div>
@@ -134,7 +147,7 @@
         title: "ยืนยันตัวตน",
         icon: "question",
         input: "password",
-        inputLabel: "กรุณาใส่รหัสผ่านปัจจุบัน",
+        inputLabel: "รหัสผ่านปัจจุบัน",
         inputPlaceholder: "รหัสผ่านปัจจุบัน",
         showCancelButton: true,
         confirmButtonText: "ตรวจสอบ",

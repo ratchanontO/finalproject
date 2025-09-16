@@ -1,5 +1,6 @@
 <?php
 include 'connectdb.php';
+include 'config.php';
 require 'mail_function.php';
 require "head.php";
 
@@ -25,7 +26,7 @@ if (!empty($_POST["username"])) {
 
     // ข้อมูลส่งเมล
     $subject = "ยืนยันการสมัครสมาชิก locker For ecp";
-    $link = "http://localhost/finalproject/verify.php?token=$token&email=$email";
+    $link = $url."verify.php?token=$token&email=$email";
     $body = "
         <h3>ยินดีต้อนรับสู่ Locker For Ecp</h3>
         <p>คุณได้สมัครสมาชิกเรียบร้อยแล้ว เพื่อใช้งานบริการของเราคุณต้องยืนยันอีเมลด้วยการกดลิ้งค์ข้างล่างก่อนใช้งาน</p>
@@ -63,6 +64,17 @@ if (!empty($_POST["username"])) {
 ?>
 
 <style>
+    .mitr-extralight200 {
+        font-family: "Mitr", sans-serif;
+        font-weight: 200;
+        font-style: normal;
+    }
+
+    .mitr-extralight300 {
+        font-family: "Mitr", sans-serif;
+        font-weight: 300;
+        font-style: normal;
+    }
     body {
         background-color:rgba(73, 70, 70, 0.12);
         height: 100vh;
@@ -87,10 +99,10 @@ if (!empty($_POST["username"])) {
 
 <body>
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mitr-extralight200">
             <div class="col-md-5">
                 <div class="login-card p-4">
-                    <h3 class="text-center mb-4"> สมัครสมาชิก </h3>
+                    <h3 class="text-center mb-4 mitr-extralight200"> สมัครสมาชิก </h3>
                     <hr>
                     <form action="register.php" method="POST">
                         <label for="username"> ชื่อผู้ใช้ </label>
