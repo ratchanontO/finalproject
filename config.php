@@ -2,7 +2,7 @@
 // config.php
 
     $api_keys = [
-        'apikey' => 'ratchanontx123',
+        'apikey' => '',
     ];
-    $url = "https://locker.2dkung.xyz/";
+    $url = "";
 ?>

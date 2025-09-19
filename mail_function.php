@@ -11,15 +11,15 @@ function sendMail($to, $subject, $body, $altBody = '') {
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'lockerforecp@gmail.com';      
-        $mail->Password   = 'vhon muun zems suxe';         
+        $mail->Username   = '';      
+        $mail->Password   = '';         
         $mail->SMTPSecure = 'tls';
         $mail->Port       = 587;
 
         $mail->CharSet = 'UTF-8'; 
         // $mail->Encoding = 'base64'; 
 
-        $mail->setFrom('lockerforecp@gmail.com', 'Locker for ecp');
+        $mail->setFrom('', 'Locker for ecp');
         $mail->addAddress($to); 
 
         $mail->isHTML(true);
